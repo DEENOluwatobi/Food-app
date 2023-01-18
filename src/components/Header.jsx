@@ -3,6 +3,8 @@ import { MdShoppingBasket } from 'react-icons/md'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
+import { useStateValue } from '../context/StateProvider'
+import { actionType } from '../context/reducer'
 
 import Logo from '../Images/logo.png'
 import Avatar from '../Images/avatar.png'
@@ -14,10 +16,16 @@ const Header = () => {
     const firebaseAuth = getAuth(app);
     const provider = new GoogleAuthProvider();
 
+    const [{user}, dispatch] = useStateValue();
+
     const login = async () => {
-        const response = await signInWithPopup(firebaseAuth, provider);
-        console.log(response)
-    }
+        const {user : {refreshToken, providerData}} = await signInWithPopup(firebaseAuth, provider);
+        dispatch({
+            type : actionType.SET_USER,
+            user : providerData[0]
+        })
+        localStorage.setItem('user', JSON.stringify(providerData[0]));
+    };
 
   return (
     <header className=' z-50 w-screen p-6 px-16'>
@@ -50,8 +58,8 @@ const Header = () => {
                 <div className='relative'>
                     <motion.img 
                         whileTap={{scale: 0.6}} 
-                        src={Avatar} 
-                        className='w-10 min-w-[40px] h-10 m-h-[40px] drop-shadow-xl cursor-pointer' 
+                        src={user ? user.photoURL : Avatar} 
+                        className='w-10 min-w-[40px] h-10 m-h-[40px] drop-shadow-xl cursor-pointer rounded-full' 
                         alt="userprofile" 
                         onClick={login}
                     />
