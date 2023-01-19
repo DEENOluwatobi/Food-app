@@ -5,7 +5,7 @@ import { Header, MainContainer, CreateContainer } from './components'
 
 const App = () => {
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       <div className="w-screen h-auto flex-col bg-primary">
         <Header />
 
