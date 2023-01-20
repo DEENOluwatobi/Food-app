@@ -93,10 +93,11 @@ const Header = () => {
                         className='w-40 flex bg-gray-50 flex-col shadow-xl rounded-lg absolute top-12 right-0'>
                         {
                             user && user.email === 'shodimutobie@gmail.com' && (
-                                <Link to = {'/createItem'}>
+                                <Link to={"/createItem"}>
                                     <p className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 
                                     transition-all duration-100 ease-in-out
-                                    text-textColor text-base'>New Item <MdAdd/></p>
+                                    text-textColor text-base'
+                                    onClick={()=> setIsMenu(false)}>New Item <MdAdd/></p>
                                 </Link>
                             )
                         }
@@ -142,23 +143,23 @@ const Header = () => {
                         className='w-40 flex bg-gray-50 flex-col shadow-xl rounded-lg absolute top-12 right-0'>
                         {
                             user && user.email === 'shodimutobie@gmail.com' && (
-                                <Link to = {'/createItem'}>
+                                <Link to={"/createItem"}>
                                     <p className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 
                                     transition-all duration-100 ease-in-out
-                                    text-textColor text-base'>New Item <MdAdd/></p>
+                                    text-textColor text-base' onClick={()=> setIsMenu(false)}>New Item <MdAdd/></p>
                                 </Link>
                             )
                         }
 
                             <ul className='flex flex-col'>
                                 <li className='text-base text-textColor cursor-pointer hover:text-headingColor duration-100
-                                transition-all ease-in-out px-4 py-2 hover:bg-slate-100'>Home</li>
+                                transition-all ease-in-out px-4 py-2 hover:bg-slate-100' onClick={()=> setIsMenu(false)}>Home</li>
                                 <li className='text-base text-textColor cursor-pointer hover:text-headingColor duration-100
-                                transition-all ease-in-out px-4 py-2 hover:bg-slate-100'>Menu</li>
+                                transition-all ease-in-out px-4 py-2 hover:bg-slate-100' onClick={()=> setIsMenu(false)}>Menu</li>
                                 <li className='text-base text-textColor cursor-pointer hover:text-headingColor duration-100
-                                transition-all ease-in-out px-4 py-2 hover:bg-slate-100'>About Us</li>
+                                transition-all ease-in-out px-4 py-2 hover:bg-slate-100' onClick={()=> setIsMenu(false)}>About Us</li>
                                 <li className='text-base text-textColor cursor-pointer hover:text-headingColor duration-100
-                                transition-all ease-in-out px-4 py-2 hover:bg-slate-100'>Services</li>
+                                transition-all ease-in-out px-4 py-2 hover:bg-slate-100' onClick={()=> setIsMenu(false)}>Services</li>
                             </ul>
 
                             <p onClick={logout} className='m-2 p-2 flex items-center justify-center rounded-md shadow-md bg-red-300 gap-3 
