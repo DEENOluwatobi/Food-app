@@ -114,12 +114,12 @@ const CreateContainer = () => {
     setImageAsset(null);
     setCalories('');
     setPrice('');
-    setCategory('Select Category');
+    setCategory("Select Category");
   }
 
 
   return (
-    <div className='flex w-full min-h-screen items-center justify-center'>
+    <div className='flex w-full min-h-screen lg:mt-8 items-center justify-center'>
       <div className='w-[90%] md:w-[75%] border border-gray-200 rounded-lg p-4
       flex items-center justify-center flex-col gap-4'>
         {fields && (
