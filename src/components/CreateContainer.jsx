@@ -5,6 +5,7 @@ import { categories } from '../utils/data'
 import Loader from './Loader';
 import { getDownloadURL, ref, uploadBytesResumable, deleteObject } from 'firebase/storage';
 import { storage } from '../firebase.config';
+import { saveItem } from '../utils/firebaseFunctions';
 
 const CreateContainer = () => {
 
@@ -80,12 +81,21 @@ const CreateContainer = () => {
           id : `${Date.now()}`,
           title : title,
           imageURL : imageAsset,
-          categry : category,
+          category : category,
           calories : calories,
           qty : 1,
           price : price,
         }
-      }
+        saveItem(data);
+        setIsLoading(false);
+        setFields(true);
+        setMsg('Data uploaded successfully');
+        setAlertStatus('success');
+        clearData();
+        setTimeout(() => {
+          setFields(false);
+        }, 4000);        
+      };
 
     } catch(error) {
       console.log(error);
@@ -94,9 +104,17 @@ const CreateContainer = () => {
       setAlertStatus("danger");
       setTimeout(()=>{
         setFields(false);
-        setIsLoading(false)
+        setIsLoading(false);
       }, 4000)
     }
+  };
+
+  const clearData = () => {
+    setTitle('');
+    setImageAsset(null);
+    setCalories('');
+    setPrice('');
+    setCategory('Select Category');
   }
 
 
