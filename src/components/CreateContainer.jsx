@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { MdAttachMoney, MdCloudUpload, MdDelete, MdFastfood, MdFoodBank } from 'react-icons/md';
 import { categories } from '../utils/data'
 import Loader from './Loader';
+import { getDownloadURL, ref, uploadBytesResumable, deleteObject } from 'firebase/storage';
+import { storage } from '../firebase.config';
 
 const CreateContainer = () => {
 
@@ -16,16 +18,85 @@ const CreateContainer = () => {
   const [ msg, setMsg] = useState(null);
   const [ isLoading, setIsLoading] = useState(false);
 
-  const uploadImage = () => {
-    
+  const uploadImage = (e) => {
+    setIsLoading(true);
+    const imageFile = e.target.files[0];
+    const storageRef = ref(storage, `Images/${Date.now()}-${imageFile.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, imageFile);
+
+    uploadTask.on('state_changed', (snapshot) => {
+      const uploadProgess = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    }, (error) => {
+      console.log(error);
+      setFields(true);
+      setMsg('Error while uploading : Try again');
+      setAlertStatus("danger");
+      setTimeout(()=>{
+        setFields(false);
+        setIsLoading(false)
+      }, 4000)
+    }, () => {
+      getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
+        setImageAsset(downloadURL);
+        setIsLoading(false);
+        setFields(true);
+        setMsg('Image uploaded successfully');
+        setAlertStatus('success');
+        setTimeout(() => {
+          setFields(false)
+        }, 4000);
+      })
+    })
   };
 
   const deleteImage = () => {
-    
+    setIsLoading(true);
+    const deleteRef = ref(storage, imageAsset);
+    deleteObject(deleteRef).then(()=>{
+      setImageAsset(null);
+      setIsLoading(false);
+      setFields(true);
+      setMsg('Image deleted successfully');
+      setAlertStatus('success');
+      setTimeout(() => {
+        setFields(false)
+      }, 4000);
+    })
   };
 
   const saveDetails = () => {
-    
+    setIsLoading(true);
+    try{
+      if((!title || !calories || !imageAsset || !price || !category)){
+        setFields(true);
+        setMsg('Required fields cannot be empty');
+        setAlertStatus("danger");
+        setTimeout(()=>{
+          setFields(false);
+          setIsLoading(false)
+        }, 4000)
+      }else{
+        const data = {
+          id : `${Date.now()}`,
+          title : title,
+          imageURL : imageAsset,
+          categry : category,
+          calories : calories,
+          qty : 1,
+          price : price,
+        }
+      }
+
+    } catch(error) {
+      console.log(error);
+      setFields(true);
+      setMsg('Error while uploading : Try again');
+      setAlertStatus("danger");
+      setTimeout(()=>{
+        setFields(false);
+        setIsLoading(false)
+      }, 4000)
+    }
   }
 
 
@@ -42,7 +113,7 @@ const CreateContainer = () => {
                 ${alertStatus === "danger" ? "bg-red-400 text-red-800" 
                 : "bg-emerald-400 text-emerald-800"
                 }`}>
-                  Something Wrong!
+                  { msg }
             </motion.p>
         )}
         <div className='w-full py-2 border-b border-gray-300 flex item-center gap-2'>
