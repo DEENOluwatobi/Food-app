@@ -6,13 +6,13 @@ const RowContainer = ({flag, data, scrollValue}) => {
 
     const rowContainer = useRef();
     useEffect(() => {
-        rowContainer.current.scrollLeft =+ scrollValue;
+        rowContainer.current.scrollLeft =++ scrollValue;
     }, [scrollValue]);
 
   return (
     <div 
     ref={rowContainer}
-    className={`w-full flex items-center my-12 gap-3 scroll-smooth ${flag ? 'overflow-x-scroll scrollbar-none' : 'overflow-x-hidden flex-wrap'}`}>
+    className={`w-full flex items-center my-4 gap-3 scroll-smooth ${flag ? 'overflow-x-scroll scrollbar-none' : 'overflow-x-hidden flex-wrap'}`}>
         {data && data.map(item => (
         <div 
             key={item.id}
@@ -21,7 +21,7 @@ const RowContainer = ({flag, data, scrollValue}) => {
                 <motion.img whileHover={{scale : 1.1}} 
                     src={item?.imageURL} 
                     alt="" 
-                    className='w-[80] -mt-8 h-[120px]'
+                    className='w-[70] -mt-8 h-[100px]'
                 />
                 <motion.div whileTap={{scale : 0.75}} className='w-8 h-8 md:w-10 md:h-10 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-md'>
                     <MdShoppingCart className='text-white'/>

@@ -19,7 +19,7 @@ const MainContainer = () => {
     <div className='flex w-full h-auto flex-col items-center justify-center mt-10 md:mt-20'>
       <HomeContainer/>
 
-      <section className='w-full my-6'>
+      <section className='w-full my-4'>
         <div className='w-full flex items-center justify-between'>
           <p className='text-lg font-semibold capitalize text-headingColor relative before:absolute
             before:rounded-lg before:bg-gradient-to-tr from-red-300 to-red-600 before:content before:w-20 before:h-1 before:-bottom-2
@@ -31,17 +31,15 @@ const MainContainer = () => {
 
             <motion.div 
               whileTap={{scale: 0.75}} 
-              className='w-7 h-7 rounded-lg bg-red-400 hover:bg-red-500 flex items-center justify-center cursor-pointer
-              transition-all duration-100 ease-in-out'
+              className='w-7 h-7 rounded-lg bg-red-400 hover:bg-red-500 flex items-center justify-center cursor-pointer'
               onClick={() => setScrollValue(-300)}>
                 <MdChevronLeft className='text-lg text-white'/>
             </motion.div>
 
             <motion.div 
               whileTap={{scale: 0.75}} 
-              className='w-7 h-7 rounded-lg bg-red-400 hover:bg-red-500 flex items-center justify-center cursor-pointer
-              transition-all duration-100 ease-in-out'
-              onClick={() => setScrollValue(+300)}>
+              className='w-7 h-7 rounded-lg bg-red-400 hover:bg-red-500 flex items-center justify-center cursor-pointer'
+              onClick={() => setScrollValue(1000)}>
                 <MdChevronRight className='text-lg text-white'/>
             </motion.div>
 
