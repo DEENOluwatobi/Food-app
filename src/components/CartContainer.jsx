@@ -18,7 +18,11 @@ const CartContainer = () => {
     }
 
   return (
-    <div className='fixed top-0 right-0 w-full md:w-375 h-screen bg-white drop-shadow-md flex flex-col z-[101]'>
+    <motion.div 
+    initial={{opacity : 0, x : 200}}
+    animate={{opacity : 1, x : 0}}
+    exit={{opacity : 0, x : 200}}
+    className='fixed top-0 right-0 w-full md:w-375 h-screen bg-white drop-shadow-md flex flex-col z-[101]'>
         <div className='w-full flex items-center justify-between p-4'>
             <motion.div whileTap={{scale:0.75}}>
                 <MdOutlineKeyboardBackspace className='text-textColor text-3xl  cursor-pointer' onClick={showCart}/>
@@ -82,13 +86,13 @@ const CartContainer = () => {
                 <motion.button 
                     whileTap={{ scale : 0.8 }}
                     type='button'
-                    className='w-full p-2 rounded-full bg-red-600 text-white text-lg my-2 hover:shadow-lg duration-150 transition-all ease-in-out'
+                    className='w-full p-2 rounded-full bg-red-600 text-white text-lg my-2 hover:shadow-lg'
                 >
                     Check Out
                 </motion.button>
             </div>
         </div>
-    </div>
+    </motion.div>
   )
 }
 
