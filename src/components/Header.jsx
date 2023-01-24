@@ -16,7 +16,7 @@ const Header = () => {
     const firebaseAuth = getAuth(app);
     const provider = new GoogleAuthProvider();
 
-    const [{user}, dispatch] = useStateValue();
+    const [{user, cartShow}, dispatch] = useStateValue();
 
     const  [isMenu, setIsMenu] = useState(false)
 
@@ -44,6 +44,13 @@ const Header = () => {
         });
     }
 
+    const showCart = () => {
+        dispatch({
+            type : actionType.SET_CART_SHOW,
+            cartShow : !cartShow,
+        })
+    }
+
   return (
     <header className=' z-50 w-full p-3 px-4 md:p-6 md:px-16 fixed bg-primary'>
         {/* DESKTOP & TABLET */}
@@ -69,7 +76,7 @@ const Header = () => {
                     transition-all ease-in-out'>Services</li>
                 </motion.ul>
 
-                <div className='relative flex items-center justify-center'>
+                <div className='relative flex items-center justify-center' onClick={showCart}>
                     <MdShoppingCart className='text-textColor text-2xl cursor-pointer'/>
                     <div className='absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg'>
                         <p className='text-xs flex items-center justify-center text-white font-semibold'>2</p>
@@ -114,7 +121,7 @@ const Header = () => {
         {/* MOBILE */}
 
         <div className='flex md:hidden h-full items-center justify-between'>
-            <div className='relative flex items-center justify-center'>
+            <div className='relative flex items-center justify-center' onClick={showCart}>
                 <MdShoppingCart className='text-textColor text-2xl cursor-pointer'/>
                 <div className='absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg'>
                     <p className='text-xs flex items-center justify-center text-white font-semibold'>2</p>
