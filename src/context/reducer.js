@@ -3,6 +3,7 @@ export const actionType = {
     SET_FOOD_ITEMS: 'SET_FOOD_ITEMS',
     SET_CART_SHOW: 'SET_CART_SHOW',
     SET_CART_ITEMS: 'SET_CART_ITEMS',
+    SET_CART: 'SET_CART',
 };
 
 const reducer = (state, action) => {
