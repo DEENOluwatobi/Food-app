@@ -44,12 +44,12 @@ const HomeContainer = () => {
             className='ml-auto h-420 w-full lg:w-auto lg:h-600' 
             alt="hero" 
         />
-        <div className='w-full h-full gap-4 flex-wrap absolute top-0 left-0 flex 
+        <div className='w-full h-full gap-1 lg:gap-4 flex-wrap absolute top-0 left-0 flex 
         items-center justify-center lg:px-16 py-4'>
             {heroData && heroData.map(n => (
                 <div 
                     key={n.id} 
-                    className='lg:w-190 min-w-[150px] p-4 bg-cardOverlay backdrop-blur-md 
+                    className='lg:w-190 min-w-[150px] p-2 md:p-4 bg-cardOverlay backdrop-blur-md 
                     rounded-3xl flex flex-col items-center justify-center drop-shadow-xl'
                 >
                     <img 
