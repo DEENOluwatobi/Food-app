@@ -32,7 +32,7 @@ const RowContainer = ({flag, data, scrollValue}) => {
   return (
     <div 
     ref={rowContainer}
-    className={`w-full flex items-center justify-center lg:justify-start my-4 gap-1 md:gap-3 scroll-smooth ${flag ? 'overflow-x-scroll scrollbar-none' : 'overflow-x-hidden flex-wrap'}`}>
+    className={`w-full flex items-center mx-auto justify-start my-4 gap-1 md:gap-3 scroll-smooth ${flag ? 'overflow-x-scroll scrollbar-none' : 'overflow-x-hidden flex-wrap'}`}>
         {data && data.map(item => (
         <div 
             key={item.id}
