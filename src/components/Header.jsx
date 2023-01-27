@@ -103,7 +103,7 @@ const Header = () => {
                         exit={{opacity: 0, scale: 0.6}}
                         className='w-40 flex bg-gray-50 flex-col shadow-xl rounded-lg absolute top-12 right-0'>
                         {
-                            user && user.email === 'shodimutobie@gmail.com' (
+                            user && user.email === 'shodimutobie@gmail.com' && (
                                 <Link to={"/createItem"}>
                                     <p className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 
                                     transition-all duration-100 ease-in-out
